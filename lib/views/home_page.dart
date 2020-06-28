@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_treeview/tree_view.dart';
-import 'package:hack20/home/channel.dart';
-import 'package:hack20/home/channel_page.dart';
+import 'file:///C:/dev/hack20/lib/views/channel.dart';
+import 'file:///C:/dev/hack20/lib/views/channel_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -68,57 +68,44 @@ class _HomePageState extends State<HomePage> {
     ]),
   ];
 
-  @override
-  void initState() {
-    _nodes = createListNode();
-    _treeViewController = TreeViewController(
-      children: _nodes,
-      selectedKey: _selectedNode,
-    );
-
-    _filterDispatchesCtrl.addListener(() {
-      setState(() => filterText = _filterDispatchesCtrl?.text ?? '');
-    });
-    super.initState();
-  }
-
   List<Node> createListNode() {
     List<Node> nodeList = [];
-
-    nodeMapping
-            .map((Channel channel) => nodeList.add(
-                  Node(
-                    label: channel.name,
-                    key: channel.name,
-                    icon: NodeIcon(
-                        codePoint: Icons.folder.codePoint, color: "yellow600"),
-                    children: channel.nodes
-                            .map(
-                              (nomeChannel) => Node(
-                                label: nomeChannel,
-                                key: nomeChannel,
-                                icon: NodeIcon(
-                                    codePoint: Icons.chat.codePoint,
-                                    color: "green"),
-                              ),
-                            )
-                            .toList() ??
-                        [],
-                  ),
-                ))
-            .toList() ??
-        [];
-
+    nodeMapping.forEach((Channel channel) {
+      List<Node> nodeChildren = [];
+      channel.nodes.forEach((nomeChannel) {
+        if (filterText == '' ||
+            nomeChannel.toLowerCase().contains(filterText.toLowerCase())) {
+          nodeChildren.add(Node(
+            label: nomeChannel,
+            key: nomeChannel,
+            icon: NodeIcon(codePoint: Icons.chat.codePoint, color: "green"),
+          ));
+        }
+      });
+      if (nodeChildren.length > 0)
+        nodeList.add(
+          Node(
+              label: channel.name,
+              key: channel.name,
+              icon: NodeIcon(
+                  codePoint: Icons.folder.codePoint, color: "yellow600"),
+              children: nodeChildren),
+        );
+    });
     return nodeList;
   }
 
   @override
   Widget build(BuildContext context) {
+    _nodes = createListNode();
+    _treeViewController = TreeViewController(
+      children: _nodes,
+      selectedKey: _selectedNode,
+    );
     TextStyle underlineStyle() => Theme.of(context)
         .textTheme
         .subtitle1
         .copyWith(decoration: TextDecoration.underline);
-
     TreeViewTheme _treeViewTheme = TreeViewTheme(
       expanderTheme: ExpanderThemeData(
         type: _expanderType,
@@ -162,6 +149,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: TextField(
             controller: _filterDispatchesCtrl,
+            onChanged: (value) => setState(() => filterText = value),
             decoration: InputDecoration(
               hintText: 'Digite o nome da sala para conversa',
               prefixIcon: Icon(Icons.search),
@@ -222,12 +210,10 @@ class _HomePageState extends State<HomePage> {
           supportParentDoubleTap: false,
           onExpansionChanged: (key, expanded) => _expandNode(key, expanded),
           onNodeTap: (key) {
-            debugPrint('Selected: $key');
             setState(() {
               _selectedNode = key;
               _treeViewController =
                   _treeViewController.copyWith(selectedKey: key);
-
               if (key == 'Flutter/Web') {
                 navigateToChannelPage();
               }
@@ -267,8 +253,6 @@ class _HomePageState extends State<HomePage> {
       );
 
   _expandNode(String key, bool expanded) {
-    String msg = '${expanded ? "Expanded" : "Collapsed"}: $key';
-    debugPrint(msg);
     Node node = _treeViewController.getNode(key);
     if (node != null) {
       List<Node> updated;
