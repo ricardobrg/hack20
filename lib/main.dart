@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 
 import 'home/home_page.dart';
+=======
+import 'package:hack20/views/channels.dart';
+import 'package:hack20/views/home.dart';
+
+import 'views/channels.dart';
+>>>>>>> Stashed changes
 
 void main() {
   runApp(MyApp());
@@ -28,7 +35,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+<<<<<<< Updated upstream
       home: HomePage()// MyHomePage(title: 'Flutter Demo Home Page'),
+=======
+      home: Home(),
+>>>>>>> Stashed changes
     );
   }
 }

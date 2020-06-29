@@ -33,6 +33,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+<<<<<<< Updated upstream
+=======
+  flutter95: ^0.0.7
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.7
+  google_sign_in: ^4.5.1
+  audioplayers: ^0.15.1
+>>>>>>> Stashed changes
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,6 +53,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+<<<<<<< Updated upstream
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -75,3 +84,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+=======
+assets:
+
+  - assets/img/du.png
+  - assets/img/du1.png
+  - assets/img/du2.png
+  - assets/img/du3.png
+  - assets/img/du4.png
+  - assets/sound/dial-up-modem-01.mp3
+  - assets/sound/dial-up-modem-busy.mp3
+>>>>>>> Stashed changes
