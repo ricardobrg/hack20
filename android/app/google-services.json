@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "35820498310",
+    "firebase_url": "https://fir-irc.firebaseio.com",
+    "project_id": "fir-irc",
+    "storage_bucket": "fir-irc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35820498310:android:80cea57a087e14d7145007",
+        "android_client_info": {
+          "package_name": "com.example.hack20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35820498310-30vk6ooqdjftug9k1lbqqc4pasqgic2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hack20",
+            "certificate_hash": "106102ad5fddb68f259b93cf01f227e7e530860b"
+          }
+        },
+        {
+          "client_id": "35820498310-jo8uatla88phppdsvshgm8v0828cqhf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDgc94Ha5xcFMv0ZIOvfxpFNxNI0EIY7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35820498310-jo8uatla88phppdsvshgm8v0828cqhf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
